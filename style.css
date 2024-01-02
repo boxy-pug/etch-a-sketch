@@ -1,0 +1,25 @@
+body {
+  padding: 0;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#board {
+  margin: 2rem;
+  border: 2px solid black;
+  width: 400px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  --pixels-per-row: 16;
+}
+
+.pixel {
+  height: calc(100% / var(--pixels-per-row));
+  flex-basis: calc(100% / var(--pixels-per-row));
+  border: none;
+  background-color: rgb(246, 192, 148);
+  box-sizing: border-box;
+}
