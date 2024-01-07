@@ -1,9 +1,24 @@
-const boardSize = 16;
-// = document.querySelector("#number-input");
-const gameContainer = document.querySelector("#board");
+// boardsize
+const defaultSize = 16;
+let boardSize = getNewSize() || defaultSize;
 
+// queryselectors
+const gameContainer = document.querySelector("#board");
+const resetButton = document.querySelector("#reset-button");
+const resizeButton = document.querySelector("#resize-button");
+
+// event listeners
+resetButton.addEventListener("click", clearDrawing);
+resizeButton.addEventListener("click", function () {
+  boardSize = getNewSize();
+  makeBoard(boardSize);
+  draw();
+});
+
+// functions
 // Making the board
 function makeBoard(boardSize) {
+  gameContainer.innerHTML = "";
   gameContainer.style.setProperty("--pixels-per-row", boardSize);
   let totalSize = boardSize * boardSize;
   for (let i = 1; i <= totalSize; i++) {
@@ -27,8 +42,12 @@ function draw() {
 
 draw();
 
-const resetButton = document.querySelector("#reset-button");
-resetButton.addEventListener("click", clearDrawing);
+// Get size from user
+function getNewSize() {
+  let newSize = prompt("What size do you want?", defaultSize);
+  return parseInt(newSize);
+  defaultSize;
+}
 
 // Clearing board
 function clearDrawing() {
